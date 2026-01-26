@@ -136,7 +136,7 @@ export default function Portfolio() {
               <SkillCard icon={<Code2 />} title="Frontend" skills="React 18, Tailwind, Vite" />
               <SkillCard icon={<Database />} title="Backend" skills="Laravel 12, MySQL, PHP" />
               <SkillCard icon={<LayoutTemplate />} title="Data" skills="Power BI, Python, DAX" />
-              <SkillCard icon={<Github />} title="DevOps" skills="Docker, AWS, Git" />
+              <SkillCard icon={<Github />} title="Tools" skills="Docker, AWS, Git" />
             </div>
           </div>
         </div>
