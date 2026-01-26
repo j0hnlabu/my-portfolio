@@ -1,7 +1,33 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, FileText, ExternalLink, Code2, Database, LayoutTemplate, ChevronDown, ChevronUp, CheckCircle2, Send, Loader2 } from 'lucide-react';
+import {
+  Github, Linkedin, Mail, FileText, ExternalLink, Code2, Database,
+  LayoutTemplate, ChevronDown, ChevronUp, CheckCircle2, Send, Loader2,
+  GraduationCap, Award // 👈 Added these imports for Education section
+} from 'lucide-react';
+
+// --- DATA: Education (NEW) ---
+const EDUCATION = [
+  {
+    id: 1,
+    school: "Universiti Teknologi MARA (UiTM)",
+    degree: "Bachelor of Information Technology (Hons.)",
+    specialization: "Specialization in Big Data Technology",
+    cgpa: "3.46",
+    period: "Oct 2022 - Feb 2026",
+    awards: ["Dean's List Award Recipient (1st & 5th Semester)"]
+  },
+  {
+    id: 2,
+    school: "Kolej Matrikulasi Kedah",
+    degree: "Foundation Degree, Accounting",
+    specialization: null,
+    cgpa: "3.96",
+    period: "Aug 2021 - Jun 2022",
+    awards: ["PSPM (4.00) Award Recipient (1st Semester)"]
+  }
+];
 
 // --- DATA: Project Details ---
 const PROJECTS = [
@@ -74,7 +100,6 @@ export default function Portfolio() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            {/* Smooth Scroll to Contact Section */}
             <a href="#contact"
               className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition shadow-lg hover:shadow-xl">
               <Mail size={20} /> Contact Me
@@ -117,6 +142,48 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* --- EDUCATION SECTION (NEW) --- */}
+      <section className="max-w-5xl mx-auto px-6 py-24 border-b border-slate-200">
+        <h2 className="text-3xl font-bold text-slate-900 mb-12">Education</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {EDUCATION.map((edu) => (
+            <div key={edu.id} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <GraduationCap size={100} className="text-blue-600" />
+              </div>
+
+              <div className="relative z-10">
+                <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full mb-4">
+                  {edu.period}
+                </span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{edu.school}</h3>
+                <p className="text-slate-700 font-medium mb-1">{edu.degree}</p>
+                {edu.specialization && (
+                  <p className="text-slate-500 text-sm mb-4">{edu.specialization}</p>
+                )}
+
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="text-sm font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded">
+                    CGPA: {edu.cgpa}
+                  </span>
+                </div>
+
+                {edu.awards.length > 0 && (
+                  <div className="space-y-2">
+                    {edu.awards.map((award, index) => (
+                      <div key={index} className="flex items-start gap-2 text-sm text-slate-600">
+                        <Award size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                        <span>{award}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* --- PROJECTS SECTION --- */}
       <section className="max-w-5xl mx-auto px-6 py-24">
         <h2 className="text-3xl font-bold text-slate-900 mb-12">Featured Projects</h2>
@@ -127,7 +194,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- CONTACT SECTION (NEW) --- */}
+      {/* --- CONTACT SECTION --- */}
       <section id="contact" className="bg-white border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-6 py-24">
           <div className="grid md:grid-cols-2 gap-12">
@@ -164,7 +231,7 @@ export default function Portfolio() {
 
       {/* --- FOOTER --- */}
       <footer className="bg-slate-900 text-slate-400 py-12 text-center">
-        <p>© {new Date().getFullYear()} Ahmad Amzar Abdul Rahim. Built with Next.js & Tailwind.</p>
+        <p>© {new Date().getFullYear()} Amzar. Built with Next.js & Tailwind.</p>
       </footer>
     </div>
   );
@@ -172,7 +239,7 @@ export default function Portfolio() {
 
 // --- COMPONENT: Contact Form ---
 function ContactForm() {
-  const [status, setStatus] = useState("idle"); // idle, submitting, success, error
+  const [status, setStatus] = useState("idle");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -180,7 +247,7 @@ function ContactForm() {
 
     const formData = new FormData(e.target);
 
-    // 👇👇👇 REPLACE THIS URL WITH YOUR FORMSPREE URL 👇👇👇
+    // 👇 YOUR FORMSPREE ID
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/mreepjvo";
 
     try {
@@ -194,7 +261,7 @@ function ContactForm() {
 
       if (response.ok) {
         setStatus("success");
-        e.target.reset(); // Clear form
+        e.target.reset();
       } else {
         setStatus("error");
       }
