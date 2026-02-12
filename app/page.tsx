@@ -33,6 +33,21 @@ const EDUCATION = [
 const PROJECTS = [
   {
     id: 1,
+    title: "AI Business Workflow Automation Studio",
+    category: "AI & Full Stack",
+    tech: ["FastAPI", "React 19", "ChromaDB", "Gemini 3 Flash"],
+    shortDescription: "An end-to-end AI platform that transforms natural language prompts into functional, multi-step API workflows.",
+    fullDescription: "A sophisticated AI-powered platform that enables users to create complex business workflows through natural language. The system intelligently matches user requests with relevant APIs using vector embeddings and orchestrates multi-step automated processes.",
+    keyFeatures: [
+      "Developed an end-to-end AI Platform that transform natural language prompts into functional, multi-step API workflows.",
+      "Built a smart search system using vector embeddings ChromaDB to accurately match user requests with the most relevant technical tools and APIs.",
+      "Implemented a custom \"Action Engine\" to handle complex task sequencing, ensuring that data flows correctly between different automated steps without needing heavy external software.",
+      "Designed a visual \"Drag-and-Drop\" editor using React Flow, allowing users to see and modify their AI-generated workflows in real-time."
+    ],
+    repoLink: "https://github.com/Wafiqsw/ai-workflow-generator"
+  },
+  {
+    id: 2,
     title: "Appointment Scheduling Platform",
     category: "Full Stack",
     tech: ["React 18", "Laravel 12", "MySQL", "Sanctum", "TailwindCSS"],
@@ -47,7 +62,7 @@ const PROJECTS = [
     repoLink: "https://github.com/j0hnlabu/barbershop-booking-system"
   },
   {
-    id: 2,
+    id: 3,
     title: "SkillVis Analytics Dashboard",
     category: "Data Analytics",
     tech: ["Power BI", "Python (Pandas)", "DAX", "Google Colab", "ETL"],
@@ -62,7 +77,7 @@ const PROJECTS = [
     repoLink: "https://app.powerbi.com/groups/me/reports/ff77b9d6-721a-4f68-b200-f5c57e43c402/3806d7f9020840d8635e?experience=power-bi"
   },
   {
-    id: 3,
+    id: 4,
     title: "Multi-Model Generative AI Platform",
     category: "AI & Engineering",
     tech: ["Streamlit", "OpenAI", "Google Gemini", "PyPDF2", "Plotly"],
@@ -231,7 +246,7 @@ export default function Portfolio() {
 
       {/* --- FOOTER --- */}
       <footer className="bg-slate-900 text-slate-400 py-12 text-center">
-        <p>© {new Date().getFullYear()} Amzar. Built with Next.js & Tailwind.</p>
+        <p>© {new Date().getFullYear()} Amzar. All rights reserved.</p>
       </footer>
     </div>
   );
@@ -359,18 +374,18 @@ function ProjectCard({ project }) {
         onClick={() => setIsOpen(!isOpen)}
         className="p-8 cursor-pointer group"
       >
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-          <div>
+        <div className="flex items-start justify-between gap-6 mb-4">
+          <div className="flex-shrink-0">
             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-1 block group-hover:text-blue-600 transition-colors">
               {project.category}
             </span>
-            <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors whitespace-nowrap">
               {project.title}
             </h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-end">
             {project.tech.map((t, i) => (
-              <span key={i} className="px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 rounded-full border border-slate-200">
+              <span key={i} className="px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 rounded-full border border-slate-200 whitespace-nowrap">
                 {t}
               </span>
             ))}
